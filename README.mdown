@@ -1,3 +1,24 @@
+cocos2d/iTraceur
+==================
+
+Forked from cocos2d/cocos2d-iphone 1279d203db52aae2576198472d6ec9b1b6de0945
+
+
+Main differences
+-------------
+   * Paused Scheduler/ActionManager that works while Director is paused
+   * CCTextureCache: more thread safety for Mac/iOS
+
+
+Extensions
+-------------
+   * CCMenuAdvanced
+   * CCAnimateAdvanced
+   * CCScroll
+   * CCTextureCache: addImageFromAnotherThreadWithName:
+   * Some other small extensions for cocos things...
+
+
 cocos2d for iPhone
 ==================
 
