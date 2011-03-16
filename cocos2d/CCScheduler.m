@@ -169,7 +169,8 @@ static CCScheduler *sharedScheduler;
 
 +(id)alloc
 {
-	NSAssert(sharedScheduler == nil, @"Attempted to allocate a second instance of a singleton.");
+	if (self == [CCScheduler class])
+		NSAssert(sharedScheduler == nil, @"Attempted to allocate a second instance of a singleton.");
 	return [super alloc];
 }
 

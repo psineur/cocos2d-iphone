@@ -32,7 +32,9 @@
 // cocos2d imports
 #import "CCDirector.h"
 #import "CCScheduler.h"
+#import "CCPausedScheduler.h"
 #import "CCActionManager.h"
+#import "CCPausedActionManager.h"
 #import "CCTextureCache.h"
 #import "CCAnimationCache.h"
 #import "CCLabelAtlas.h"
@@ -402,6 +404,8 @@ static CCDirector *_sharedDirector = nil;
 	[CCSpriteFrameCache purgeSharedSpriteFrameCache];
 	[CCScheduler purgeSharedScheduler];
 	[CCActionManager purgeSharedManager];
+	[CCPausedScheduler purgeSharedScheduler];//< psi:
+	[CCPausedActionManager purgeSharedManager]; //<psi:
 	[CCTextureCache purgeSharedTextureCache];
 	
 	
@@ -450,7 +454,7 @@ static CCDirector *_sharedDirector = nil;
 	oldAnimationInterval_ = animationInterval_;
 	
 	// when paused, don't consume CPU
-	[self setAnimationInterval:1/4.0];
+	//[self setAnimationInterval:1/4.0]; //<psi: commented due to pausedScheduler work
 	isPaused_ = YES;
 }
 

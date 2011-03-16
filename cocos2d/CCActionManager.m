@@ -55,7 +55,8 @@ static CCActionManager *sharedManager_ = nil;
 
 +(id)alloc
 {
-	NSAssert(sharedManager_ == nil, @"Attempted to allocate a second instance of a singleton.");
+	if (self == [CCActionManager class])
+		NSAssert(sharedManager_ == nil, @"Attempted to allocate a second instance of a singleton.");
 	return [super alloc];
 }
 

@@ -35,7 +35,9 @@
 #import "CCTouchDelegateProtocol.h"
 #import "CCTouchDispatcher.h"
 #import "../../CCScheduler.h"
+#import "CCPausedScheduler.h" //<psi: ugly shit =)
 #import "../../CCActionManager.h"
+#import "CCPausedActionManager.h" //<psi: ugly shit =)
 #import "../../CCTextureCache.h"
 #import "../../ccMacros.h"
 #import "../../CCScene.h"
@@ -159,7 +161,8 @@ CGFloat	__ccContentScaleFactor = 1;
 	/* tick before glClear: issue #533 */
 	if( ! isPaused_ ) {
 		[[CCScheduler sharedScheduler] tick: dt];	
-	}
+	}	
+	[[CCPausedScheduler sharedScheduler] tick: dt]; //<psi: paused scheduler for itraceur
 	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
