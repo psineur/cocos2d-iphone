@@ -50,6 +50,7 @@ enum {
 @implementation CCMenuItem
 
 @synthesize isSelected=isSelected_;
+@synthesize linkedItem = linkedItem_;
 -(id) init
 {
 	NSAssert(NO, @"MenuItemInit: Init not supported.");
@@ -106,6 +107,7 @@ enum {
 
 -(void) dealloc
 {
+	self.linkedItem = nil;
 	[invocation release];
 
 #if NS_BLOCKS_AVAILABLE
@@ -118,11 +120,13 @@ enum {
 -(void) selected
 {
 	isSelected_ = YES;
+	[linkedItem_ selected];
 }
 
 -(void) unselected
 {
 	isSelected_ = NO;
+	[linkedItem_ unselected];
 }
 
 -(void) activate

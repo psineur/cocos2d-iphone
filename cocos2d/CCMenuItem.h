@@ -36,6 +36,7 @@
  *
  *  Subclass CCMenuItem (or any subclass) to create your custom CCMenuItem objects.
  */
+@class CCMenuItem;
 @interface CCMenuItem : CCNode
 {
 	NSInvocation *invocation;
@@ -46,12 +47,15 @@
 	
 	BOOL isEnabled_;
 	BOOL isSelected_;
+	
+	CCMenuItem *linkedItem_;
 }
 
 /** returns whether or not the item is selected
 @since v0.8.2
 */
 @property (nonatomic,readonly) BOOL isSelected;
+@property (nonatomic, readwrite, retain) CCMenuItem *linkedItem;
 
 /** Creates a CCMenuItem with a target/selector */
 +(id) itemWithTarget:(id)target selector:(SEL)selector;
