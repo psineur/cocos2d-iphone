@@ -36,6 +36,7 @@
 
 #import "../../CCNode.h"
 #import "../../CCScheduler.h"
+#import "CCPausedScheduler.h"
 #import "../../ccMacros.h"
 
 #pragma mark -
