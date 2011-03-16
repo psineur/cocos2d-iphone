@@ -66,6 +66,7 @@
 @implementation CCDirectorMac
 
 @synthesize isFullScreen = isFullScreen_;
+@synthesize windowGLView = windowGLView_; //<psi:
 
 -(id) init
 {
@@ -102,6 +103,7 @@
 
 		isFullScreen_ = fullscreen;
 	
+		CGLLockContext([[openGLView_ openGLContext] CGLContextObj]); //<psi: fix
 		if( fullscreen ) {
 			
 			// create the fullscreen view/window
@@ -148,6 +150,8 @@
 		}
 		
 		[openGLView_ setNeedsDisplay:YES];
+		
+		CGLUnlockContext([[openGLView_ openGLContext] CGLContextObj]); //<psi: fix
 	}
 #else
 #error Full screen is not supported for Mac OS 10.5 or older yet

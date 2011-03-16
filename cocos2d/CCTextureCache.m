@@ -45,6 +45,11 @@ static EAGLContext *auxGLcontext = nil;
 static NSOpenGLContext *auxGLcontext = nil;
 #endif
 
+#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
+#import "CCDirectorMac.h"
+#endif
+//< psi:
+
 
 @interface CCAsyncObject : NSObject
 {
@@ -169,10 +174,16 @@ static CCTextureCache *sharedTextureCache;
 
 #elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
 
-	[contextLock_ lock];
+	//[contextLock_ lock];
+	CGLLockContext([[[[CCDirector sharedDirector] openGLView] openGLContext] CGLContextObj]); //<psi: fix black screen and white rects on fullscreen toggle
 	if( auxGLcontext == nil ) {
-
+		
 		MacGLView *view = [[CCDirector sharedDirector] openGLView];
+		
+		
+		CCDirectorMac *director = (CCDirectorMac *)[CCDirector sharedDirector];
+		if ( [director isFullScreen] )
+			view = [ director windowGLView ]; //< psi:
 		
 		NSOpenGLPixelFormat *pf = [view pixelFormat];
 		NSOpenGLContext *share = [view openGLContext];
@@ -202,7 +213,8 @@ static CCTextureCache *sharedTextureCache;
 	
 	[NSOpenGLContext clearCurrentContext];
 
-	[contextLock_ unlock];
+	//[contextLock_ unlock];
+	CGLUnlockContext([[[[CCDirector sharedDirector] openGLView] openGLContext] CGLContextObj]); //<psi: fix black screen and white rects on fullscreen toggle
 	
 	[autoreleasepool release];
 	
@@ -251,7 +263,6 @@ static CCTextureCache *sharedTextureCache;
 	tex=[textures_ objectForKey: path];
 	
 	if( ! tex ) {
-		
 		NSString *lowerCase = [path lowercaseString];
 		// all images are handled by UIImage except PVR extension that is handled by our own handler
 		
@@ -323,6 +334,8 @@ static CCTextureCache *sharedTextureCache;
 
 	}
 	
+	[[tex retain] autorelease]; //<psi: fix for multithread
+	
 	[dictLock_ unlock];
 	
 	return tex;
@@ -367,6 +380,8 @@ static CCTextureCache *sharedTextureCache;
 
 -(void) removeUnusedTextures
 {
+	[dictLock_ lock]; //<psi: needed, cause in iTraceur textures load async from another thread
+	
 	NSArray *keys = [textures_ allKeys];
 	for( id key in keys ) {
 		id value = [textures_ objectForKey:key];		
@@ -375,25 +390,35 @@ static CCTextureCache *sharedTextureCache;
 			[textures_ removeObjectForKey:key];
 		}
 	}
+	
+	[dictLock_ unlock];
 }
 
 -(void) removeTexture: (CCTexture2D*) tex
-{
+{	
 	if( ! tex )
 		return;
+	
+	[dictLock_ lock]; //<psi: needed, cause in iTraceur textures load async from another thread
 	
 	NSArray *keys = [textures_ allKeysForObject:tex];
 	
 	for( NSUInteger i = 0; i < [keys count]; i++ )
 		[textures_ removeObjectForKey:[keys objectAtIndex:i]];
+	
+	[dictLock_ unlock];
 }
 
 -(void) removeTextureForKey:(NSString*)name
-{
+{	
 	if( ! name )
 		return;
 	
+	[dictLock_ lock]; //<psi: needed, cause in iTraceur textures load async from another thread
+	
 	[textures_ removeObjectForKey:name];
+	
+	[dictLock_ unlock];
 }
 
 #pragma mark TextureCache - Get
