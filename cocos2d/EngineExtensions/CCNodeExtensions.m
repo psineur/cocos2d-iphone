@@ -8,7 +8,6 @@
 
 #import "CCNodeExtensions.h"
 #import "cocos2d.h"
-#import "chipmunk.h"
 
 @interface CCActionManager (Private)
 

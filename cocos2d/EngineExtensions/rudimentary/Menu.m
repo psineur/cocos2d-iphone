@@ -30,7 +30,7 @@ enum {
 
 @implementation Menu
 
-@synthesize opacity;
+
 
 - (id) init
 {
@@ -185,6 +185,13 @@ enum {
 - (ccColor3B) color
 {
 	return ccWHITE;
+}
+
+@dynamic opacity;
+
+- (GLubyte) opacity
+{
+	return opacity;
 }
 
 /** Override synthesized setOpacity to recurse items */

@@ -17,7 +17,7 @@
 // if 1 - tiles will be preloaded and their textures will be retained
 #ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
 	#define PRELOAD_ALL_TILES 1
-#else if __IPHONE_OS_VERSION_MAX_ALLOWED
+#elif defined(__IPHONE_OS_VERSION_MAX_ALLOWED)
 	#define PRELOAD_ALL_TILES 0
 #endif
 
@@ -26,7 +26,7 @@
 //    0 - will load dynamically from main CCDirector thread with possible freezes
 #ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
 	#define DYNAMIC_THREADED_TILE_LOAD 0
-#else if __IPHONE_OS_VERSION_MAX_ALLOWED
+#elif defined(__IPHONE_OS_VERSION_MAX_ALLOWED)
 	#define DYNAMIC_THREADED_TILE_LOAD 1
 #endif
 
@@ -193,7 +193,13 @@
 	//load loadedRect tiles and unload tiles that are not in loadedRect
 	for (UnloadableSpriteNode *child in _dynamicChildren)
 		if (  0 == ( CGRectIntersection([child boundingBox], _loadedRect).size.width )  )
+		{
+#if PRELOAD_ALL_TILES
+			// do not unload any tiles
+#else
 			[child unload];
+#endif
+		}
 		else 
 			[child load];
 	//< 0 == size.width must be faster than CGRectIsEmpty	
@@ -280,12 +286,11 @@
 	_levelTextures = [[NSMutableArray arrayWithCapacity: [_dynamicChildren count]] retain];
 	for (UnloadableSpriteNode *child in _dynamicChildren)
 	{
-		[child forceLoad];
+		[child load];
 		CCSprite *sprite = [child sprite];
 		CCTexture2D *tex = sprite.texture;
 		if (tex)
 			[_levelTextures addObject: tex];
-		child.mustBeLoaded = NO;
 	}
 #endif
 	
