@@ -66,7 +66,7 @@
 		newValue = 0;
 	
     if (newValue > 1.0) 
-		newValue = 1.0;
+		newValue = 1.0f;
 	
     value = newValue;
 	

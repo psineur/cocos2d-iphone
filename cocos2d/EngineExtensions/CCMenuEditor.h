@@ -6,13 +6,8 @@
 //  Copyright 2010 Parkour Games. All rights reserved.
 //
 
-#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
-	#import <Cocoa/Cocoa.h>
-#endif
+#import "cocos2d.h"
 
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-	#import <Foundation/Foundation.h>
-#endif
 
 
 @interface CCMenuEditor : NSObject 
