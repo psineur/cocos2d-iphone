@@ -1,7 +1,14 @@
 cocos2d/iTraceur
 ==================
 
-Forked from cocos2d/cocos2d-iphone 1279d203db52aae2576198472d6ec9b1b6de0945
+Forked from cocos2d/cocos2d-iphone 0.9.9.5 release 1279d203db52aae2576198472d6ec9b1b6de0945
+
+Used in iTraceur - Parkour / Freerunning Platform Game
+[Mac OS X][3]
+[iPad][4]
+[iPhone/iPod Touch][5]
+
+Feel free to buy it and contribute ;)
 
 
 Main differences
@@ -16,6 +23,7 @@ Extensions
    * CCAnimateAdvanced
    * CCScroll
    * CCTextureCache: addImageFromAnotherThreadWithName:
+   * DynamicTiledLevelNode - node that i used in iTraceur to handle large levels (16000x2500 px)
    * Some other small extensions for cocos things...
 
 
@@ -122,3 +130,6 @@ And then open XCode -> New Project -> User Templates -> cocos2d
 
 [1]: http://www.cocos2d-iphone.org "cocos2d for iPhone"
 [2]: http://www.cocos2d.org "cocos2d"
+[3]: http://itunes.apple.com/us/app/itraceur-parkour-freerunning/id417629805?mt=12 "iTunes Link"
+[4]: http://itunes.apple.com/ru/app/itraceur-hd-parkour-freerunning/id397615614?mt=8 "iTunes Link"
+[5]: http://itunes.apple.com/us/app/itraceur-parkour-freerunning/id374163905?mt=8& "iTunes Link"
