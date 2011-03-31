@@ -208,6 +208,13 @@ enum {
  */
 @property(nonatomic,readonly) CGPoint anchorPointInPixels;
 
+/** The anchorPoint in points (not normalized)
+ * can be usefull in some cases
+ * ATTENTION: rises an exception if contentSize.height or contentSize.width is 0,
+ * due to division by zero.
+ */
+@property(nonatomic, readwrite) CGPoint anchorPointInPoints;
+
 /** The untransformed size of the node in Points
  The contentSize remains the same no matter the node is scaled or rotated.
  All nodes has a size. Layer and Scene has the same size of the screen.

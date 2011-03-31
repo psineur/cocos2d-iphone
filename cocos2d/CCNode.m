@@ -77,6 +77,7 @@
 @synthesize anchorPoint = anchorPoint_, anchorPointInPixels = anchorPointInPixels_;
 @synthesize contentSize = contentSize_, contentSizeInPixels = contentSizeInPixels_;
 @synthesize isRelativeAnchorPoint = isRelativeAnchorPoint_;
+@dynamic anchorPointInPoints;
 
 // getters synthesized, setters explicit
 -(void) setRotation: (float)newRotation
@@ -154,6 +155,18 @@
 		isTransformGLDirty_ = YES;
 #endif		
 	}
+}
+
+- (CGPoint) anchorPointInPoints
+{
+	return ccp( contentSize_.width * anchorPoint_.x, contentSize_.height * anchorPoint_.y );
+}
+
+- (void) setAnchorPointInPoints: (CGPoint) newAnchorInPoints
+{
+	NSAssert( (contentSize_.width != 0) && (contentSize_.height != 0), @"CCNode#setAnchorPointInPoints: division by zero!" );
+	
+	[self setAnchorPoint: ccp(newAnchorInPoints.x / contentSize_.width, newAnchorInPoints.y / contentSize_.height) ];
 }
 
 -(void) setContentSize:(CGSize)size
