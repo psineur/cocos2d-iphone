@@ -259,9 +259,7 @@
 	[super update: t];
 	
 	if ( changeSpriteAnchor ) 
-	{
-		sprite.anchorPointInPixels = spriteAnchor;
-	}   
+		sprite.anchorPoint = spriteAnchor;
 }
 
 - (void) cancelChangingSpriteAnchor
