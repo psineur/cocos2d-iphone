@@ -1,14 +1,13 @@
 //
 //  CCAnimateAdvanced.m
-//  itraceur
+//  iTraceur - Parkour / Freerunning Platform Game
 //
 //  Created by Stepan Generalov on 13.11.10.
-//  Copyright 2010 Parkour Games. All rights reserved.
+//  Copyright 2010-2011 Parkour Games. All rights reserved.
 //
 
 #import "CCActionsExtensions.h"
 #import "CCNodeExtensions.h"
-
 
 
 @implementation CCAnimateAdvanced
@@ -127,16 +126,14 @@
 	return self;
 }
 
-
-// use another init or add properties
 -(id) copyWithZone: (NSZone*) zone
 {
 	CCAnimateAdvanced *result = nil;
 	
 	result =
-		[[[self class] allocWithZone: zone] initWithDuration:duration_ 
-												   animation:animation_ 
-										restoreOriginalFrame:restoreOriginalFrame];
+		[[[self class] allocWithZone: zone] initWithDuration: duration_ 
+												   animation: animation_ 
+										restoreOriginalFrame: restoreOriginalFrame];
 	
 	if (changeSpriteAnchor)
 		result.spriteAnchor = spriteAnchor;
@@ -213,51 +210,44 @@
 
 -(void) update: (ccTime) t
 {
-	
 	if (stoped)
 		return;
 	
 	CCSprite *sprite = target_;
 	
+	// set position & scale for first frame displayed
+	if ( firstUpdate )
+	{
 	
-		if ( firstUpdate )
-        {
-			
-
-            prevSpriteAnchor = sprite.anchorPoint;
-			prevScale.x = sprite.scaleX;
-            prevScale.y = sprite.scaleY;
-            prevPosition.x = sprite.position.x;
-            prevPosition.y = sprite.position.y;
-            
-//            if ( changeSpriteAnchor ) 
-//            {
-//                sprite.anchorPoint = spriteAnchor;
-//            }          
-            
-            if ( changeSpriteScaleX )
-            {                
-                sprite.scaleX = scaleX;
-            }
-            
-            if ( changeSpriteScaleY )
-            {                
-                sprite.scaleY = scaleY;
-            }
-            
-            
-            CGPoint position = sprite.position;
-            if ( changeSpritePositionX )
-                position.x = positionX;            
-            if ( changeSpritePositionY )
-                position.y = positionY;
-            sprite.position = position;
-			
-            firstUpdate = NO;
-        }
+		// save old values for stop
+		prevSpriteAnchor = sprite.anchorPoint;
+		prevScale.x = sprite.scaleX;
+		prevScale.y = sprite.scaleY;
+		prevPosition.x = sprite.position.x;
+		prevPosition.y = sprite.position.y;     
+		
+		// change scale X if needed
+		if ( changeSpriteScaleX )
+			sprite.scaleX = scaleX;
+		
+		// change scale Y if needed
+		if ( changeSpriteScaleY )
+			sprite.scaleY = scaleY;
+		
+		// change position if needed
+		CGPoint position = sprite.position;
+		if ( changeSpritePositionX )
+			position.x = positionX;            
+		if ( changeSpritePositionY )
+			position.y = positionY;
+		sprite.position = position;
+		
+		firstUpdate = NO;
+	}
 	
 	[super update: t];
 	
+	// set anchorPoint in everyFrame after update
 	if ( changeSpriteAnchor ) 
 		sprite.anchorPoint = spriteAnchor;
 }
@@ -266,8 +256,6 @@
 {
 	changeSpriteAnchor = NO;
 }
-
-
 
 @end
 
