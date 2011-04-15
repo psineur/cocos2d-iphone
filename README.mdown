@@ -3,9 +3,9 @@ cocos2d/iTraceur
 
 Forked from cocos2d/cocos2d-iphone 0.9.9.5 release 1279d203db52aae2576198472d6ec9b1b6de0945
 
-Used in iTraceur - Parkour / Freerunning Platform Game
-[Mac OS X][3]
-[iPad][4]
+Used in iTraceur - Parkour / Freerunning Platform Game  
+[Mac OS X][3]  
+[iPad][4]  
 [iPhone/iPod Touch][5]
 
 Feel free to buy it and contribute ;)
