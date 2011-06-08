@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-
+//TODO: [RUDIMENT] used only in HUD - must be removed with [HUD-REFACTOR]
 
 
 /** AtlasLoader is designed to easily import AtlasSpriteFrames from Texture Atlas Creator

@@ -17,7 +17,7 @@
 
 /// Creates loader and loads texture to it immideatily with files:
 /// anAtlasName + ".atlas.plist" for frames plist
-/// anAtlasName + ".atlas.png" for texture
+/// anAtlasName + ".atlas.pvr.ccz" for texture
 +(id) atlasLoaderWithAtlasName: (NSString *) anAtlasName
 {
     // create loader with plist
@@ -27,7 +27,7 @@
     
     //load texture
     path = [ [NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.atlas", anAtlasName] 
-                                            ofType:@"png" ];    
+                                            ofType:@"pvr.ccz" ];    
     [ldr loadTextureWithFile: path];
     
     return ldr;

@@ -7,7 +7,6 @@
 //
 
 #import "cocos2d.h"
-#import "CCMenu.h"
 
 @interface NSString (UnicharExtensions)
 

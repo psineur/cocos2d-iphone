@@ -210,8 +210,6 @@ enum {
 
 /** The anchorPoint in points (not normalized)
  * can be usefull in some cases
- * ATTENTION: rises an exception if contentSize.height or contentSize.width is 0,
- * due to division by zero.
  */
 @property(nonatomic, readwrite) CGPoint anchorPointInPoints;
 

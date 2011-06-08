@@ -34,13 +34,18 @@
 @end
 
 
+// TODO: Remove this class. Deprecated
+// WARNING: this is old CCMenuItemSpriteIndependent that need a lot of support code
+// for each menu item (positioning). Better CCMenuItemSPriteIndependent taken from
+// cocoshop is available in CCMenuItemSpriteIndependent.h
+//
 // CCMenuItemSprite is CCMenuItemSprite that doesn't add normal, selected
 // and disabled images as children. Instead of that its just retain them.
 // So you can place images anyhow you want.
 // 
 // Note: content size will be set from normalImage_ on init in CCMenuItemSprite
-//		CCMenuItemSpriteIndependent changes only the way of holding images
-@interface CCMenuItemSpriteIndependent : CCMenuItemSprite
+//		CCMenuItemSpriteIndependentOld changes only the way of holding images
+@interface CCMenuItemSpriteIndependentOld : CCMenuItemSprite
 @end
 
 @interface CCLayerScroll : CCLayer

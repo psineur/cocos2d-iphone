@@ -173,6 +173,12 @@ NSString *ccRemoveHDSuffixFromFile( NSString *path )
 	if( ! [relPath isAbsolutePath] )
 	{
 		NSString *file = [relPath lastPathComponent];
+		/*NSString *imageDirectory = [relPath stringByDeletingLastPathComponent];
+		
+		fullpath = [[NSBundle mainBundle] pathForResource:file
+												   ofType:nil
+											  inDirectory:imageDirectory];*/
+		
 		fullpath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:file];
 	}
 	

@@ -8,6 +8,7 @@
 
 #import "CCNodeExtensions.h"
 #import "cocos2d.h"
+#import "chipmunk.h"
 
 @interface CCActionManager (Private)
 
@@ -83,7 +84,7 @@
 
 @end
 
-@implementation CCMenuItemSpriteIndependent
+@implementation CCMenuItemSpriteIndependentOld
 
 
 -(void) setNormalImage:(CCNode <CCRGBAProtocol>*)image
@@ -296,7 +297,7 @@
 
 
 // DELAYED
-//TODO: if using keyboard to pick a MenuItem and we need to scroll the CCLayerScroll to show this item - do it
+//TODO: [LEAKED-MAC] if using keyboard to pick a MenuItem and we need to scroll the CCLayerScroll to show this item - do it
 - (void) ensureVisible:(CCNode *)aNode
 {
 	// we thing that aNode is a child of _scrollingChild and we must position it right way

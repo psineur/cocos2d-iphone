@@ -25,7 +25,7 @@
 	{   
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 		self.isTouchEnabled = YES;  
-#else if (__MAC_OS_X_VERSION_MAX_ALLOWED)
+#elif (__MAC_OS_X_VERSION_MAX_ALLOWED)
 		self.isMouseEnabled = YES;
 #endif
 		value = 0;  
@@ -66,7 +66,7 @@
 		newValue = 0;
 	
     if (newValue > 1.0) 
-		newValue = 1.0f;
+		newValue = 1.0;
 	
     value = newValue;
 	

@@ -30,7 +30,7 @@ enum {
 
 @implementation Menu
 
-
+@synthesize opacity;
 
 - (id) init
 {
@@ -46,7 +46,7 @@ enum {
 	va_list args;
 	va_start(args,item);
 	
-	//TODO: throw out old Menu/MenuItem system
+	//TODO: [HUD-REFACTOR] throw out old Menu/MenuItem system
 	id s = [[[self alloc] initWithItems: item vaList:args] autorelease];
 	
 	va_end(args);
@@ -187,14 +187,12 @@ enum {
 	return ccWHITE;
 }
 
-@dynamic opacity;
-
+/** Override synthesized setOpacity to recurse items */
 - (GLubyte) opacity
 {
 	return opacity;
 }
 
-/** Override synthesized setOpacity to recurse items */
 - (void) setOpacity:(GLubyte)newOpacity
 {
 	opacity = newOpacity;

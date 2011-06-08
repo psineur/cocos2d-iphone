@@ -8,7 +8,7 @@
 
 #import "CCResizingCorner.h"
 
-NSString *const resizingCornerImageName	= @"resizingCorner.png";
+NSString *const resizingCornerImageName	= @"resizingCorner.pvr.ccz";
 @implementation CCResizingCorner
 
 + (id) resizingCorner

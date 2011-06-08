@@ -25,14 +25,12 @@
 
 @end
 
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
+
 @interface CCMenu (Private) 
 
 -(CCMenuItem *) itemForTouch: (UITouch *) touch;
 
 @end
-
-#endif
 
 
 @implementation CCMenuAdvanced
@@ -240,7 +238,7 @@
 #endif
 }
 
-// TODO: add columns and rows alignment methods
+// TODO: [Cocos2D] add columns and rows alignment methods
 
 -(void) alignItemsHorizontallyWithPadding:(float)padding
 {
@@ -457,7 +455,7 @@
 	delta = ccp(delta.x / self.scaleX, delta.y / self.scaleY);
 	
 	// add delta
-	CGPoint newPosition = ccpAdd(self.position, delta );	
+	CGPoint newPosition = ccpAdd(_scrollingChild.position, delta );	
 	self.position = newPosition;
 	
 	// stay in externalBorders
