@@ -49,7 +49,7 @@
 	
 	NSArray *elementsArray = 
 	[ [NSArray alloc]  initWithContentsOfFile: 
-	 [ [NSBundle mainBundle] pathForResource: nameString ofType: @"plist"]];
+	 [ [NSBundle mainBundle] pathForResource: [nameString autorelease] ofType: @"plist"]];
 	
 	return [elementsArray autorelease];
 }
