@@ -353,6 +353,72 @@
 @end
 
 
+@implementation CCMenuItemSpriteSimple
+
+@synthesize name = name_;
+
+enum itemActionTags
+{
+	kZoomActionTag = 456,
+};
+
++(id) itemFromSprite:(CCNode<CCRGBAProtocol>*)normalSprite target:(id)target selector:(SEL)selector
+{
+	return [[[self alloc] initFromSprite: normalSprite target: target selector: selector] autorelease];
+}
+
+-(id) initFromSprite:(CCNode<CCRGBAProtocol>*)normalSprite target:(id)target selector:(SEL)selector
+{
+	if( (self=[super initWithTarget:target selector:selector]) ) {
+		
+		self.normalImage = normalSprite;
+		self.selectedImage = nil;
+		self.disabledImage = nil;
+		
+		originalScale_ = normalImage_.scale;
+		
+		[self setContentSize: [normalImage_ contentSize]];
+	}
+	return self;	
+}
+
+- (void) dealloc
+{
+	self.name = nil;
+	
+	[super dealloc];
+}
+
+-(void) selected
+{
+	if(isEnabled_)
+	{	
+		[super selected];
+		[normalImage_ stopActionByTag:kZoomActionTag];
+		//originalScale_ = normalImage_.scale;
+		CCAction *zoomAction = [CCScaleTo actionWithDuration:0.1f scale:originalScale_ * 1.2f];
+		zoomAction.tag = kZoomActionTag;
+		[normalImage_ runAction:zoomAction];
+	}
+}
+
+-(void) unselected
+{
+	if(isEnabled_) {
+		[super unselected];
+		[normalImage_ stopActionByTag:kZoomActionTag];
+		CCAction *zoomAction = [CCScaleTo actionWithDuration:0.1f scale:originalScale_];
+		zoomAction.tag = kZoomActionTag;
+		[normalImage_ runAction:zoomAction];
+	}
+}
+
+@end
+
+#pragma mark -
+
+
+
 
 
 @implementation CCMenuPrioritized

@@ -1,14 +1,15 @@
 //
 //  CCNodeExtensions.h
-//  itraceur
+//  iTraceur - Parkour / Freerunning Platform Game
 //
 //  Created by Stepan Generalov on 16.11.10.
-//  Copyright 2010 Parkour Games. All rights reserved.
+//  Copyright 2010-2011 Parkour Games. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "CCMenuAdvanced.h"
+#import "CCMenuItemSpriteIndependent.h"
 
 
 
@@ -80,6 +81,22 @@
 
 - (void) selected;
 - (void) unselected;
+
+@end
+
+// CCMenuItemSpriteIndependent without selected image - it just scales like CCMenuItemLabel
+// when selected/unselected.
+// With additional NSString property to distinguish different items.
+@interface CCMenuItemSpriteSimple : CCMenuItemSpriteIndependent
+{
+	CGFloat originalScale_;
+	NSString *name_;
+}
+
+@property(readwrite, copy)NSString *name;
+
++(id) itemFromSprite:(CCNode<CCRGBAProtocol>*)normalSprite target:(id)target selector:(SEL)selector;
+-(id) initFromSprite:(CCNode<CCRGBAProtocol>*)normalSprite target:(id)target selector:(SEL)selector;
 
 @end
 
