@@ -55,6 +55,10 @@
 @since v0.8.2
 */
 @property (nonatomic,readonly) BOOL isSelected;
+
+/** linkedItem will be selected/unselected with us on selected/unselected
+ only if needed (no selected will be called if linkedItem.isSelected and vice versa).
+ Will be set to nil onExit. */
 @property (nonatomic, readwrite, retain) CCMenuItem *linkedItem;
 
 /** Creates a CCMenuItem with a target/selector */

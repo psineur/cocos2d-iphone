@@ -105,6 +105,14 @@ enum {
 
 #endif // NS_BLOCKS_AVAILABLE
 
+- (void) onExit
+{
+	// Avoid recursive retain.
+	self.linkedItem = nil;
+	
+	[super onExit];
+}
+
 -(void) dealloc
 {
 	self.linkedItem = nil;
@@ -120,13 +128,17 @@ enum {
 -(void) selected
 {
 	isSelected_ = YES;
-	[linkedItem_ selected];
+	
+	if (!linkedItem_.isSelected)
+		[linkedItem_ selected];
 }
 
 -(void) unselected
 {
 	isSelected_ = NO;
-	[linkedItem_ unselected];
+	
+	if (linkedItem_.isSelected)
+		[linkedItem_ unselected];
 }
 
 -(void) activate
